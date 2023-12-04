@@ -8,4 +8,6 @@ interface GroupRepository {
 
     public function createGroup(GroupEntity $group ): GroupEntity;
 
+    // public function getUserGroup(int $userId);
+
 }

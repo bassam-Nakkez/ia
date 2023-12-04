@@ -3,27 +3,28 @@
 namespace App\Adapters\Presenters\HttpPresenter\User;
 
 use App\Adapters\Presenters\HttpPresenter\HttpBasePresenter;
-use App\Adapters\ViewModels\HttpResponseViewModel;
+use App\Adapters\ViewModels\JsonResourceViewModel;
 use App\Domain\Interfaces\ViewModel;
 use App\Domain\UseCases\UserActor\CreateGroup\CreateGroupOutputPort;
 use App\Domain\UseCases\UserActor\CreateGroup\CreateGroupResponseModel;
-use Illuminate\Http\JsonResponse;
+use App\Http\Resources\ExceptionJsonResponse;
+use App\Http\Resources\SuccessJsonResponse;
 
-class CreateGroupHttpPresenter extends HttpBasePresenter implements CreateGroupOutputPort
+class CreateGroupHttpPresenter  implements CreateGroupOutputPort
 {
 
 
 
     public function groupCreated(CreateGroupResponseModel $model ): ViewModel
     {
-      return  $this->sendSuccessJsonResponse($model ,'Group Created Successfully');
+      return new JsonResourceViewModel(new SuccessJsonResponse($model->getGroup(),'Group Created Successfully'));
     }
 
 
 
     public function unableToCreateGroup( \Exception $e): ViewModel
     {
-      return $this->sendErrorJsonResponse($e->getMessage() );
+        return new JsonResourceViewModel(new ExceptionJsonResponse($e));
     }
 
 

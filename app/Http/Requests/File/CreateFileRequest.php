@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Group;
+namespace App\Http\Requests\File;
 
 use App\Adapters\Presenters\HttpPresenter\HttpBasePresenter;
+use App\Adapters\ViewModels\JsonResourceViewModel;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use App\Adapters\Presenters\HttpPresenter\User\CreateGroupHttpPresenter;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CreateGroupRequest extends FormRequest
+class CreateFileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,21 +26,23 @@ class CreateGroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=> ["string","required"],
+            "fileName"=> ["string","required"],
             "owner"=>["integer","required"],
+            "content"=>["string","required"],
+            "groupId"=>['integer',"required"],
+            "file_path"=>[]
         ];
     }
 
 
     public function messages()
     {
-
         return [
-            'rate.required'=>"رأيك مطلوب"
+            // 'rate.required'=>"رأيك مطلوب"
         ];
     }
 
-     function failedValidation($validator)
+    function failedValidation($validator)
     {
         $errors = $validator->errors();
 
@@ -51,4 +53,5 @@ class CreateGroupRequest extends FormRequest
         ]);
         throw new HttpResponseException($response);
     }
+
 }

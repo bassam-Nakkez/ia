@@ -12,7 +12,7 @@ public function getOwnerID(): int;
 
 public function getStatus(): bool;
 
-public function getFileExtension(): string;
+public function getFilePath(): string;
 
 public function getAttributes():Array;
 

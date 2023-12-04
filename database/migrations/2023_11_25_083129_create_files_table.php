@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('groupId')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('owner')->references('id')->on('users')->onDelete('cascade');
             $table->string('file_path')->nullable();
-            $table->string('file_EX')->nullable()->default('txt');
+            $table->longText('content');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

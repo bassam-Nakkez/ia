@@ -6,7 +6,7 @@ use App\Domain\Interfaces\EntitiesInterface\FileEntity;
 
 interface FileRepository
 {
-    public function AddFile( FileEntity $file): FileEntity;
+    public function addFile( FileEntity $file): FileEntity;
 
     // public function updateModel(Entity $type,BaseEntity $Model ): BaseEntity;
 

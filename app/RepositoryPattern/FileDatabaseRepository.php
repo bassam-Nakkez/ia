@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class FileDatabaseRepository implements FileRepository
 {
-    public function AddFile( $file): FileEntity
+    public function addFile( $file): FileEntity
     {
       //  DB::beginTransaction();
 

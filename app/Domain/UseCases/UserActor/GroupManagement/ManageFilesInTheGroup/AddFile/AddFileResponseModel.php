@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\UseCases\UserActor\ManageFilesInTheGroup\AddFile;
+namespace App\Domain\UseCases\UserActor\GroupManagement\ManageFilesInTheGroup\AddFile;
 
 use App\Domain\Interfaces\EntitiesInterface\FileEntity;
 

@@ -11,7 +11,6 @@ class GroupDatabaseRepository implements GroupRepository
 {
     public function createGroup( $group): GroupEntity
     {
-
         return Group::create([
             'name' => $group->getName(),
             'owner' => $group->getOwnerId(),
