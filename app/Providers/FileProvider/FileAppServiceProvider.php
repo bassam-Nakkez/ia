@@ -4,9 +4,9 @@ namespace App\Providers\FileProvider;
 
 use App\Adapters\Presenters\HttpPresenter\User\AddFileHttpPresenter;
 use App\Domain\Interfaces\RepositoriesInterface\FileRepository;
-use App\Domain\UseCases\UserActor\ManageFilesInTheFile\AddFile\AddFileInteractor;
-use App\Domain\UseCases\UserActor\ManageFilesInTheGroup\AddFile\AddFileInputPort;
-use App\Domain\UseCases\UserActor\ManageFilesInTheGroup\AddFile\AddFileOutputPort;
+use App\Domain\UseCases\UserActor\GroupManagement\ManageFilesInTheGroup\AddFile\AddFileInputPort ;
+use App\Domain\UseCases\UserActor\GroupManagement\ManageFilesInTheGroup\AddFile\AddFileInteractor;
+use App\Domain\UseCases\UserActor\GroupManagement\ManageFilesInTheGroup\AddFile\AddFileOutputPort ;
 use App\Http\Controllers\GroupManagementControllers\ManagementFilesInTheGroup\AddFileController;
 use App\RepositoryPattern\FileDatabaseRepository;
 use Illuminate\Support\ServiceProvider;
@@ -32,10 +32,6 @@ class FileAppServiceProvider extends ServiceProvider
 
            //////------------------- << File Factory & Repository >>------------------
 
-           $this->app->bind(
-               AddFileOutputPort::class,
-               AddFileHttpPresenter::class
-           );
 
            $this->app
                ->when(AddFileController::class)

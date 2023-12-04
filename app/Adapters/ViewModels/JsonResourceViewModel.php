@@ -14,7 +14,7 @@ class JsonResourceViewModel implements ViewModel
         $this->resource = $resource;
     }
 
-    public function getResource(): JsonResource
+    public function getResponse() : JsonResource
     {
         return $this->resource;
     }

@@ -2,11 +2,11 @@
 namespace App\Http\Controllers\GroupManagementControllers\ManagementFilesInTheGroup;
 
 use App\Adapters\ViewModels\HttpResponseViewModel;
-use App\Domain\UseCases\UserActor\ManageFilesInTheFile\AddFile\AddFileInteractor;
-use App\Domain\UseCases\UserActor\ManageFilesInTheGroup\AddFile\AddFileInputPort;
-use App\Domain\UseCases\UserActor\ManageFilesInTheGroup\AddFile\AddFileRequestModel;
+use App\Adapters\ViewModels\JsonResourceViewModel;
+use App\Domain\UseCases\UserActor\GroupManagement\ManageFilesInTheGroup\AddFile\AddFileInputPort;
+use App\Domain\UseCases\UserActor\GroupManagement\ManageFilesInTheGroup\AddFile\AddFileRequestModel;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\File\CreateFileRequest;
 use Illuminate\Http\Request;
 
 class AddFileController extends Controller
@@ -16,15 +16,14 @@ class AddFileController extends Controller
         ){}
 
 
-    public function __invoke(Request $request)
+    public function __invoke (CreateFileRequest $request)
     {
-        $input = $request->all();
         $viewModel = $this->interactor->AddFile(
-            new AddFileRequestModel($input)
+            new AddFileRequestModel($request->validated())
         );
 
 
-        if ($viewModel instanceof HttpResponseViewModel) {
+        if ($viewModel instanceof JsonResourceViewModel) {
             return $viewModel->getResponse();
         }
 

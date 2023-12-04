@@ -1,7 +1,9 @@
 <?php
 namespace App\Domain\Interfaces\EntitiesInterface;
 
-interface BaseEntity{
+use Illuminate\Database\Eloquent\Model;
+
+interface BaseEntity {
   //
 
 }

@@ -14,9 +14,8 @@ class File extends Model implements FileEntity
     protected $primaryKey = "id";
     protected $fillable =
     [
-        "name","owner","content","file_EX","status","groupId"
+        "fileName","owner","content","status","groupId","file_path","status"
     ];
-
 
     /**
      * Get the group that owns the File
@@ -28,9 +27,9 @@ class File extends Model implements FileEntity
         return $this->belongsTo(Group::class, 'groupId', 'id');
     }
 
-    public function getFileName(): string{return $this->attributes['name'];}
+    public function getFileName(): string{return $this->attributes['fileName'];}
     public function getFileContent(): string{return $this->attributes['content'];}
-    public function getFileExtension(): string{return $this->attributes['file_EX'];}
+    public function getFilePath(): string{return $this->attributes['file_path'];}
     public function getGroupID(): int{return $this->attributes['groupId'];}
 
     public function getOwnerID(): int{return $this->attributes['owner'];}

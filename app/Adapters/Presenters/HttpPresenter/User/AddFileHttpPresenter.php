@@ -3,11 +3,13 @@
 namespace App\Adapters\Presenters\HttpPresenter\User;
 
 use App\Adapters\Presenters\HttpPresenter\HttpBasePresenter;
+use App\Adapters\ViewModels\JsonResourceViewModel;
 use App\Domain\Interfaces\ViewModel;
-use App\Domain\UseCases\UserActor\ManageFilesInTheGroup\AddFile\AddFileOutputPort;
-use App\Domain\UseCases\UserActor\ManageFilesInTheGroup\AddFile\AddFileResponseModel;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
+use App\Domain\UseCases\UserActor\GroupManagement\ManageFilesInTheGroup\AddFile\AddFileOutputPort ;
+use App\Domain\UseCases\UserActor\GroupManagement\ManageFilesInTheGroup\AddFile\AddFileResponseModel ;
+use App\Http\Resources\ExceptionJsonResponse;
+use App\Http\Resources\SuccessJsonResponse;
+
 class AddFileHttpPresenter extends HttpBasePresenter implements AddFileOutputPort
 {
 
@@ -15,14 +17,14 @@ class AddFileHttpPresenter extends HttpBasePresenter implements AddFileOutputPor
 
     public function fileAdded(AddFileResponseModel $model ): ViewModel
     {
-      return  $this->sendSuccessJsonResponse($model ,'File Added Successfully');
+        return new JsonResourceViewModel(new SuccessJsonResponse($model->getFile(),'File Added Successfully'));
     }
 
 
     public function unableToAddFile( \Exception $e): ViewModel
     {
       //  DB::rollBack();
-      return $this->sendErrorJsonResponse($e->getMessage() );
+      return new JsonResourceViewModel(new ExceptionJsonResponse($e));
     }
 
 }

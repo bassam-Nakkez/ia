@@ -37,10 +37,6 @@ class GroupAppServiceProvider extends ServiceProvider
 
                //////------------------- << Group Factory & Repository >>------------------
 
-               $this->app->bind(
-                   CreateGroupOutputPort::class,
-                   CreateGroupHttpPresenter::class
-               );
 
                $this->app
                    ->when(CreateGroupController::class)
